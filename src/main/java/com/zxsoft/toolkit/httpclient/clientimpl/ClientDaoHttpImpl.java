@@ -9,6 +9,7 @@ import org.apache.http.HttpHost;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.conn.routing.HttpRoute;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
@@ -16,6 +17,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpRequestRetryHandler;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import org.apache.http.protocol.HttpContext;
 
 import zx.soft.utils.json.JsonUtils;
 
@@ -35,11 +37,13 @@ public class ClientDaoHttpImpl {
 
 	public void doPost(String url, String data) {
 
+		HttpContext context = HttpClientContext.create();
 		try {
 			HttpPost httpPost = new HttpPost(url);
 			HttpEntity entity = new StringEntity(data, ContentType.create("application/json", "UTF-8"));
 			httpPost.setEntity(entity);
-			CloseableHttpResponse response = httpClient.execute(httpPost);
+			//强烈建议每个线程（执行一次请求）有自己的HttpContext实例
+			CloseableHttpResponse response = httpClient.execute(httpPost, context);
 			response.close();
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
@@ -69,7 +73,7 @@ public class ClientDaoHttpImpl {
 				num = String.valueOf(i) + String.valueOf(j);
 				nums.add(num);
 			}
-			Thread thread = new PostThread(client, JsonUtils.toJsonWithoutPretty(nums));
+			Thread thread = new Thread(new PostThread(client, JsonUtils.toJsonWithoutPretty(nums)));
 			threads.add(thread);
 		}
 		for (int i = 0; i < threadnum; i++) {
@@ -86,19 +90,4 @@ public class ClientDaoHttpImpl {
 		client.close();
 	}
 
-	static class PostThread extends Thread {
-		private String num;
-		private ClientDaoHttpImpl client;
-		private static final String URL = "http://192.168.6.126:8888/http/nums";
-
-		public PostThread(ClientDaoHttpImpl client, String num) {
-			this.client = client;
-			this.num = num;
-		}
-
-		@Override
-		public void run() {
-			client.doPost(URL, this.num);
-		}
-	}
 }
