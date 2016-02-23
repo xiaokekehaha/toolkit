@@ -6,19 +6,19 @@
 	<version>1.0.0</version>
 	<name>tools for general function</name>
 
-<properties>
-<httpclient.version>4.5</httpclient.version>
-</properties>
+	<properties>
+		<httpclient.version>4.5</httpclient.version>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>${httpclient.version}</version>
 		</dependency>
-			<dependency>
+		<dependency>
 			<groupId>zx.soft</groupId>
 			<artifactId>common-utils</artifactId>
-			<version>1.2.0</version>
+			<version>1.3.0</version>
 		</dependency>
 		<!-- 日志组件 -->
 		<dependency>
@@ -41,6 +41,45 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.7</version>
 		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>18.0</version>
+		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
 
+		<finalName>${project.artifactId}-${project.version}</finalName>
+
+	</build>
+	<repositories>
+		<repository>
+			<id>zxsoft-public</id>
+			<name>Nexus Release Repository</name>
+			<url>http://192.168.3.23:18081/nexus/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>cloudera</id>
+			<url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
+		</repository>
+	</repositories>
 </project>

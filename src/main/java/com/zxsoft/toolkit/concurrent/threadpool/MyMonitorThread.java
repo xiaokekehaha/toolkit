@@ -3,6 +3,7 @@ package com.zxsoft.toolkit.concurrent.threadpool;
 import java.util.concurrent.ThreadPoolExecutor;
 
 public class MyMonitorThread implements Runnable {
+
 	private ThreadPoolExecutor executor;
 
 	private int seconds;

@@ -1,7 +1,7 @@
 package com.zxsoft.toolkit.concurrent.threadpool;
 
 import java.lang.Thread.UncaughtExceptionHandler;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -15,7 +15,8 @@ public class ThreadPoolExecutorUtils {
 
 	public static ThreadPoolExecutor createExecutor(int corePoolThread) {
 		final ThreadPoolExecutor executor = new ThreadPoolExecutor(corePoolThread, corePoolThread, 0L,
-				TimeUnit.MICROSECONDS, new LinkedBlockingQueue<Runnable>(), new ThreadPoolExecutor.CallerRunsPolicy());
+				TimeUnit.MICROSECONDS, new ArrayBlockingQueue<Runnable>(corePoolThread * 2),
+				new ThreadPoolExecutor.CallerRunsPolicy());
 		executor.setThreadFactory(new ThreadFactory() {
 
 			@Override
@@ -38,13 +39,4 @@ public class ThreadPoolExecutorUtils {
 		return executor;
 	}
 
-	public static void main(String[] args) throws InterruptedException {
-		ThreadPoolExecutor executor = ThreadPoolExecutorUtils.createExecutor(64);
-		executor.execute(new Thread());
-		executor.shutdown();
-		while (!executor.awaitTermination(10, TimeUnit.SECONDS)) {
-			logger.info("still waiting executor terminated");
-		}
-
-	}
 }

@@ -1,8 +1,6 @@
 package com.zxsoft.toolkit.httpclient.clientimpl;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
@@ -18,8 +16,6 @@ import org.apache.http.impl.client.DefaultHttpRequestRetryHandler;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.protocol.HttpContext;
-
-import zx.soft.utils.json.JsonUtils;
 
 public class ClientDaoHttpImpl {
 
@@ -59,35 +55,6 @@ public class ClientDaoHttpImpl {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public static void main(String[] args) {
-		ClientDaoHttpImpl client = new ClientDaoHttpImpl();
-		String num = null;
-		int threadnum = 10;
-		int postnum = 10000;
-		List<Thread> threads = new ArrayList<>();
-		for (int i = 0; i < threadnum; i++) {
-			List<String> nums = new ArrayList<>();
-			for (int j = 0; j < postnum; j++) {
-				num = String.valueOf(i) + String.valueOf(j);
-				nums.add(num);
-			}
-			Thread thread = new Thread(new PostThread(client, JsonUtils.toJsonWithoutPretty(nums)));
-			threads.add(thread);
-		}
-		for (int i = 0; i < threadnum; i++) {
-			threads.get(i).start();
-		}
-
-		for (int i = 0; i < threadnum; i++) {
-			try {
-				threads.get(i).join();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		client.close();
 	}
 
 }
