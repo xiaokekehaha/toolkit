@@ -6,19 +6,19 @@
 	<version>1.0.0</version>
 	<name>tools for general function</name>
 
-	<properties>
-		<httpclient.version>4.5</httpclient.version>
-	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>${httpclient.version}</version>
+			<version>4.5</version>
 		</dependency>
+
 		<dependency>
-			<groupId>zx.soft</groupId>
-			<artifactId>common-utils</artifactId>
-			<version>1.3.0</version>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.8.0</version>
+			<type>jar</type>
+			<scope>compile</scope>
 		</dependency>
 		<!-- 日志组件 -->
 		<dependency>
@@ -71,15 +71,5 @@
 		<finalName>${project.artifactId}-${project.version}</finalName>
 
 	</build>
-	<repositories>
-		<repository>
-			<id>zxsoft-public</id>
-			<name>Nexus Release Repository</name>
-			<url>http://192.168.3.23:18081/nexus/content/groups/public/</url>
-		</repository>
-		<repository>
-			<id>cloudera</id>
-			<url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
-		</repository>
-	</repositories>
+	
 </project>
