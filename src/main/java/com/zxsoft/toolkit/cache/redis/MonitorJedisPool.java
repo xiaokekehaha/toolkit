@@ -17,10 +17,11 @@ public class MonitorJedisPool implements Runnable {
 			System.out.println("active:" + pool.getNumActive() + "; idle:" + pool.getNumIdle() + "; waiters:"
 					+ pool.getNumWaiters());
 			try {
-				Thread.sleep(5000);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+
 		}
 	}
 
