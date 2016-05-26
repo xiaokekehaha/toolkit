@@ -17,7 +17,7 @@ import com.zxsoft.toolkit.concurrent.threadpool.ThreadPoolExecutorUtils;
 public class RedisConnector {
 
 	public static Logger logger = LoggerFactory.getLogger(RedisConnector.class);
-	private static volatile JedisPool jedisPoolInstance;
+	private static JedisPool jedisPoolInstance;
 
 	public static JedisPool getJedisPoolInstance() {
 		JedisPool result = jedisPoolInstance;
