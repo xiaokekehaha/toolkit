@@ -5,8 +5,40 @@
 	<artifactId>toolkit</artifactId>
 	<version>1.0.0</version>
 	<name>tools for general function</name>
+	<properties>
+		<hbase.version>0.98.6-hadoop2</hbase.version>
+		<kafka.version>0.10.0.0</kafka.version>
+	</properties>
 
 	<dependencies>
+
+		<!-- kafka-client -->
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka-clients</artifactId>
+			<version>${kafka.version}</version>
+		</dependency>
+		<!-- HBase -->
+		<dependency>
+			<groupId>org.apache.hbase</groupId>
+			<artifactId>hbase-client</artifactId>
+			<version>${hbase.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hbase</groupId>
+			<artifactId>hbase-common</artifactId>
+			<version>${hbase.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hbase</groupId>
+			<artifactId>hbase-protocol</artifactId>
+			<version>${hbase.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hbase</groupId>
+			<artifactId>hbase-server</artifactId>
+			<version>${hbase.version}</version>
+		</dependency>
 
 		<!-- http://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
 		<dependency>
