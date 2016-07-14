@@ -1,4 +1,4 @@
-package com.zxsoft.tookit.guava.proxy;
+package com.zxsoft.tooklit.guava.proxy;
 
 import java.lang.reflect.Proxy;
 import java.util.HashSet;
@@ -6,6 +6,8 @@ import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.zxsoft.toolkit.guava.proxy.LoggerProxyFactory;
 
 public class LoggerProxyFactoryTest {
 

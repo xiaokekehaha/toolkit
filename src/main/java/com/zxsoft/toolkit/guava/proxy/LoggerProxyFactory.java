@@ -1,4 +1,4 @@
-package com.zxsoft.tookit.guava.proxy;
+package com.zxsoft.toolkit.guava.proxy;
 
 import com.google.common.reflect.Reflection;
 

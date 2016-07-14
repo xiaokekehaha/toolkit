@@ -1,4 +1,4 @@
-package com.zxsoft.tookit.guava.proxy;
+package com.zxsoft.toolkit.guava.proxy;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -32,12 +32,12 @@ public class GenericProxyFactory {
 		T t = (T) Proxy.newProxyInstance(obj.getClass().getClassLoader(), new Class[] { intf },
 				new InvocationHandler() {
 
-			@Override
-			public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-				return method.invoke(obj, args);
-			}
+					@Override
+					public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+						return method.invoke(obj, args);
+					}
 
-		});
+				});
 
 		return t;
 	}
