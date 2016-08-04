@@ -11,7 +11,8 @@ import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
-import zx.soft.utils.config.ConfigUtil;
+
+import com.zxsoft.toolkit.common.utils.PropertiesUtils;
 
 /**
  * redis操作类
@@ -74,7 +75,7 @@ public class RedisOperation {
 
 	private RedisOperation() {
 		JedisPoolConfig config = new JedisPoolConfig();
-		Properties props = ConfigUtil.getProps("utils.properties");
+		Properties props = PropertiesUtils.getProps("utils.properties");
 		config.setTestOnBorrow(true);
 		config.setTestOnReturn(true);
 		config.setMaxWaitMillis(Integer.parseInt(props.getProperty("redis.maxwaitmillis")));//设置排队等待的最长时间
