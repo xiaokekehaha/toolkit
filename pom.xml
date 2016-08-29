@@ -23,6 +23,12 @@
 			<groupId>org.apache.hbase</groupId>
 			<artifactId>hbase-client</artifactId>
 			<version>${hbase.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.hbase</groupId>
@@ -38,6 +44,12 @@
 			<groupId>org.apache.hbase</groupId>
 			<artifactId>hbase-server</artifactId>
 			<version>${hbase.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- http://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
@@ -95,8 +107,22 @@
 		<dependency>
 			<groupId>io.netty</groupId>
 			<artifactId>netty-all</artifactId>
-			<version>5.0.0.Alpha1</version>
+			<version>4.1.4.Final</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.parquet/parquet-common -->
+		<dependency>
+			<groupId>org.apache.parquet</groupId>
+			<artifactId>parquet-common</artifactId>
+			<version>1.8.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.parquet</groupId>
+			<artifactId>parquet-avro</artifactId>
+			<version>1.8.1</version>
+		</dependency>
+
+
 
 		<dependency>
 			<groupId>junit</groupId>

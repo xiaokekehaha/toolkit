@@ -1,4 +1,4 @@
-package com.zxsoft.tookit.guava.future;
+package com.zxsoft.toolkit.guava.future;
 
 import com.google.common.util.concurrent.ListenableFuture;
 
