@@ -1,4 +1,6 @@
 *.class
+toolkit.iml
+.idea/
 .project
 .classpath
 .settings/
